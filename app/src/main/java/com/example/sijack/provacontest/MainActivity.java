@@ -3,21 +3,17 @@ package com.example.sijack.provacontest;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.sijack.provacontest.database.AppDatabase;
 import com.example.sijack.provacontest.database.Room;
+import com.nhaarman.supertooltips.ToolTipRelativeLayout;
 
 import java.util.ArrayList;
 
@@ -43,11 +39,11 @@ public class MainActivity extends Activity {
 
         Display display = getWindowManager().getDefaultDisplay();
 
-
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
         density = (int) metrics.density;
 
+        ToolTipRelativeLayout toolTipRelativeLayout = (ToolTipRelativeLayout) findViewById(R.id.activity_main_tooltipRelativeLayout);
         final RelativeLayout container = findViewById(R.id.container);
         final RelativeLayout frameContainer = findViewById(R.id.frameContainer);
 
@@ -76,7 +72,7 @@ public class MainActivity extends Activity {
             iv.setY(y+(h/2)-(markerd/2));
             iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 
-            iv.setOnClickListener(new MarkerListener(this, frameContainer));
+            iv.setOnClickListener(new MarkerListener(this, frameContainer, toolTipRelativeLayout));
 
             frameContainer.addView(iv);
 
